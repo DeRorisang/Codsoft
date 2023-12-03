@@ -1,4 +1,15 @@
-public static void main(String[] args) {
+package codsoft;
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Rorisang Mhlongo
+ */
+public class Task1NumberGame {
+
+    public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Random random = new Random();
 
@@ -66,3 +77,4 @@ public static void main(String[] args) {
 
         input.close();
     }
+}
