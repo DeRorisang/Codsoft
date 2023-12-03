@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+        try {
+            double subject1, subject2, subject3, totalMarks, averagePercentage;
+            String grade;
+            Scanner input = new Scanner(System.in);
+
+            System.out.print("Enter Marks for subject 1: ");
+            subject1 = input.nextDouble();
+            System.out.print("Enter Marks for subject 2: ");
+            subject2 = input.nextDouble();
+            System.out.print("Enter Marks for subject 3: ");
+            subject3 = input.nextDouble();
+
+            totalMarks = subject1 + subject2 + subject3;
+
+            averagePercentage = (totalMarks / 3);
+
+            if (averagePercentage >= 50) {
+                grade = "Passed";
+            } else if (averagePercentage >= 80) {
+                grade = "Passed with distintion";
+            } else {
+                grade = "Failed";
+            }
+
+            System.out.println("\nTotal marks: " + String.format("%.2f", totalMarks));
+            System.out.println("Average percentage: " + String.format("%.2f", averagePercentage) + "%");
+            System.out.println("Grade: " + grade);
+        } catch (Exception ex) {
+            System.out.println("Error, Please enter numeric values only. ");
+        }
+
+    }
