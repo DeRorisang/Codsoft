@@ -1,0 +1,68 @@
+public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Random random = new Random();
+
+        boolean playAgain;
+        int score = 0;
+
+        while (true) {
+            int number;
+            int randomNumber;
+            int minRange = 1;
+            int maxRange = 100;
+            boolean guessedRight = false;
+
+            randomNumber = random.nextInt(maxRange) + minRange;
+            System.out.println("Welcome to Guess the Number Game!");
+            System.out.println("Choose a number between " + minRange + " and " + maxRange + ". You have 5 attempts.");
+            System.out.println();
+
+            for (int i = 0; i < 5; i++) {
+                System.out.print("Attempt " + (i + 1) + " - Enter a Number: ");
+
+                if (input.hasNextInt()) {
+                    number = input.nextInt();
+
+                    if (number >= minRange && number <= maxRange) {
+                        if (number == randomNumber) {
+                            System.out.println("Congratulations! You've guessed the correct number.");
+                            guessedRight = true;
+                            score++;
+                            break;
+                        } else if (number < randomNumber) {
+                            System.out.println("too low");
+                        } else {
+                            System.out.println("too high");
+                        }
+                    } else {
+                        System.out.println("Please enter a number between " + minRange + " and " + maxRange + ".");
+                        i--;
+                    }
+                } else {
+                    System.out.println("Please enter a valid number.");
+                    i--;
+                    input.next();
+                    System.out.println();
+                }
+            }
+
+            if (!guessedRight) {
+                System.out.println("\nThe random number was: " + randomNumber);
+            }
+
+            System.out.println("Your current score is: " + score);
+
+            System.out.print("\nDo you want to play again? (yes/no): ");
+            String playAgainAnswer = input.next();
+            System.out.println();
+            playAgain = (playAgainAnswer.equalsIgnoreCase("yes")
+                    || playAgainAnswer.equalsIgnoreCase("Yes")
+                    || playAgainAnswer.equalsIgnoreCase("YES"));
+
+            if (!playAgain) {
+                break; // Exit the loop if playAgain is false
+            }
+        }
+
+        input.close();
+    }
