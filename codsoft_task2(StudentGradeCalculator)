@@ -1,4 +1,14 @@
-public static void main(String[] args) {
+package codsoft;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Rorisang Mhlongo
+ */
+public class Task2StudentGradeCalculator {
+
+    public static void main(String[] args) {
         try {
             double subject1, subject2, subject3, totalMarks, averagePercentage;
             String grade;
@@ -31,3 +41,5 @@ public static void main(String[] args) {
         }
 
     }
+
+}
