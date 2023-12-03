@@ -1,0 +1,80 @@
+package codsoft;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Rorisang Mhlongo
+ */
+public class Task4QuizApplicationWithTimer {
+
+    public static void main(String[] args) {
+        try {
+            Scanner input = new Scanner(System.in);
+            int option;
+            String[] questions = {"Who is the current President of South Africa?",
+                "What is the President's favorite car?",
+                "Where is the President?", "When is the President going to USA?",
+                "Why is the President corrupt?"};
+
+            int score = 0;
+            long startTime = System.currentTimeMillis();
+            long endTime = startTime + 45_000;
+
+            System.out.println("You 45 seconds to answer all questions");
+
+            for (int i = 0; i < questions.length; i++) {
+                if (System.currentTimeMillis() >= endTime) {
+                    System.out.println("\nTime's up!");
+                    break;
+                }
+
+                System.out.println("\nQuestion " + (i + 1) + "\n" + questions[i]);
+
+                if (i == 0) {
+                    System.out.println("1. Nelson Mandela" + "\n2. Thabo Mbheki" + "\n3. Jacob Zuma" + "\n4. Cyril Ramaphosa");
+                } else if (i == 1) {
+                    System.out.println("1. BMW" + "\n2. Benz" + "\n3. VW" + "\n4. Toyota");
+                } else if (i == 2) {
+                    System.out.println("1. At the Gym" + "\n2. In a meeting" + "\n3. At the club" + "\n4. In his favorite car");
+                } else if (i == 3) {
+                    System.out.println("1. Today" + "\n2. Tomorrow" + "\n3. After 2 weeks" + "\n4. After 2 months");
+                } else if (i == 4) {
+                    System.out.println("1. He likes money" + "\n2. He is cruel" + "\n3. He is heartless" + "\n4. He is selfish");
+                }
+
+                while (true) {
+                    System.out.print("Choose an option: ");
+                    option = input.nextInt();
+
+                    if (option > 0 && option < 5) {
+                        break;
+                    } else {
+                        System.out.println("Invalid option\n");
+                    }
+                }
+
+                if (option == getCorrectAnswer(i)) {
+                    score++;
+                }
+            }
+
+            System.out.println("----------------------------------------------------------------------");
+            System.out.println("\nScore: " + score + "/5");
+            System.out.println("\nCorrect answers: "
+                    + "\nQuestion 1: 4. Cyril Ramaphosa"
+                    + "\nQuestion 2: 1. BMW"
+                    + "\nQuestion 3: 2. In a meeting"
+                    + "\nQuestion 4: 2. Tomorrow"
+                    + "\nQuestion 5: 1. He likes money");
+        } catch (Exception ex) {
+            System.out.println("Error, Please enter numeric values only. ");
+        }
+    }
+
+    private static int getCorrectAnswer(int questionNumber) {
+        int[] correctAnswers = {4, 1, 2, 2, 1};
+        return correctAnswers[questionNumber];
+    }
+
+}
