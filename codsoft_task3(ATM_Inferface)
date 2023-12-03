@@ -1,0 +1,113 @@
+package codsoft;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Rorisang Mhlongo
+ */
+public class Task3ATM_Inferface {
+
+    public static void main(String[] args) {
+        try {
+            BankAccount obj1 = new BankAccount(1000);
+            ATM_Machine obj2 = new ATM_Machine(obj1);
+
+            System.out.println(obj2.display());
+        } catch (Exception ex) {
+            System.out.println("Error, Please enter numeric values only. ");
+        }
+    }
+
+}
+
+class BankAccount {
+
+    private double balance;
+
+    public BankAccount() {
+        balance = 0;
+    }
+
+    public BankAccount(double balance) {
+        this.balance = balance;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= balance) {
+            balance = balance - amount;
+            System.out.println("Withdrawal successful");
+        } else {
+            System.out.println("Insufficient funds");
+            System.out.println("Withdrawal not successful");
+        }
+
+    }
+
+    public void deposit(double amount) {
+        balance = balance + amount;
+    }
+
+    public double checkBalance() {
+        return balance;
+    }
+
+}
+
+class ATM_Machine {
+
+    public BankAccount userBankAccount;
+
+    public ATM_Machine() {
+    }
+
+    public ATM_Machine(BankAccount account) {
+        this.userBankAccount = account;
+    }
+
+    public double display() {
+        int option;
+        double depositAmount, withdrawalAmount;
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            System.out.println("\n1. Check Balance");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Exit");
+
+            System.out.print("\nChoose an option: ");
+            option = input.nextInt();
+
+            if (option == 1) {
+                System.out.println("The balance is: R " + userBankAccount.checkBalance());
+            } else if (option == 2) {
+                System.out.print("Enter deposit amount: ");
+                depositAmount = input.nextDouble();
+                userBankAccount.deposit(depositAmount);
+                System.out.println("Deposit successful");
+
+            } else if (option == 3) {
+                System.out.print("Enter withdraw amount: ");
+                withdrawalAmount = input.nextDouble();
+                userBankAccount.withdraw(withdrawalAmount);
+
+            } else if (option == 4) {
+                System.out.println("Thank You for Exiting");
+                System.exit(0);
+                break;
+            } else {
+                System.out.println("Invalid Option");
+            }
+        }
+        return option;
+    }
+
+}
